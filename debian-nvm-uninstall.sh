@@ -28,7 +28,9 @@ rm -rf "$USER_HOME/.nvm"
 echo "[2/3] Limpando ~/.bashrc e ~/.zshrc..." | tee -a "$LOG_UNINSTALL"
 for shell_rc in "$USER_HOME/.bashrc" "$USER_HOME/.zshrc"; do
     if [[ -f "$shell_rc" ]]; then
+        sed -i '/# NVM configuration/d' "$shell_rc"
         sed -i '/nvm.sh/d' "$shell_rc"
+        sed -i '/bash_completion/d' "$shell_rc"
         sed -i '/export NVM_DIR/d' "$shell_rc"
     fi
 done
